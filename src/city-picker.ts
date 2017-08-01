@@ -171,7 +171,7 @@ export class CityPicker implements AfterContentInit, ControlValueAccessor, OnDes
     // Add province data to picker
     let provinceCol: any = {
       name:  'province',
-      options: this.citiesData.map( province => { return { text: province.name, value: province.code, disabled: false } } )
+      options: this.citiesData.map( province => { return { text: province.name, value: province.id, disabled: false } } )
     };
     let provinceIndex = this.citiesData.findIndex( option => option.name == values[0]);
     provinceIndex = provinceIndex === -1 ? 0 : provinceIndex;
@@ -182,7 +182,7 @@ export class CityPicker implements AfterContentInit, ControlValueAccessor, OnDes
     let cityColData = this.citiesData[provinceCol.selectedIndex].children;
     let cityCol: any = {
       name:  'city',
-      options: cityColData.map( city => { return {text: city.name, value: city.code, disabled: false} })
+      options: cityColData.map( city => { return {text: city.name, value: city.id, disabled: false} })
     };
     let cityIndex = cityColData.findIndex( option => option.name == values[1]);
     cityIndex = cityIndex === -1 ? 0 : cityIndex;
@@ -193,7 +193,7 @@ export class CityPicker implements AfterContentInit, ControlValueAccessor, OnDes
     let regionData = this.citiesData[provinceCol.selectedIndex].children[cityCol.selectedIndex].children;
     let regionColCol: any = {
       name:  'region',
-      options: regionData.map( city => {return { text: city.name, value: city.code, disabled: false }} )
+      options: regionData.map( city => {return { text: city.name, value: city.id, disabled: false }} )
     };
     let regionIndex = regionData.findIndex( option => option.name == values[2]);
     regionIndex = regionIndex === -1 ? 0 : regionIndex;
@@ -223,7 +223,7 @@ export class CityPicker implements AfterContentInit, ControlValueAccessor, OnDes
     if(cityCol && this._provinceCol != provinceCol.selectedIndex){
       cityCol.selectedIndex = 0;
       let cityColData = this.citiesData[provinceCol.selectedIndex].children;
-      cityCol.options =  cityColData.map( city => { return {text: city.name, value: city.code, disabled: false} });
+      cityCol.options =  cityColData.map( city => { return {text: city.name, value: city.id, disabled: false} });
       if( this._pickerColumnCmps && cityCol.options.length > 0){
         setTimeout(() => this._pickerColumnCmps[1].setSelected(0, 100), 0);
       }
@@ -232,7 +232,7 @@ export class CityPicker implements AfterContentInit, ControlValueAccessor, OnDes
     if(regionCol && (this._cityCol != cityCol.selectedIndex || this._provinceCol != provinceCol.selectedIndex)){
       let regionData = this.citiesData[provinceCol.selectedIndex].children[cityCol.selectedIndex].children;
       regionCol.selectedIndex = 0;
-      regionCol.options = regionData.map( city => {return { text: city.name, value: city.code, disabled: false }} );
+      regionCol.options = regionData.map( city => {return { text: city.name, value: city.id, disabled: false }} );
       if( this._pickerColumnCmps && regionCol.options.length > 0){
         setTimeout(() => this._pickerColumnCmps[2].setSelected(0, 100), 0);
       }

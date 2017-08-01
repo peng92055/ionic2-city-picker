@@ -3,6 +3,6 @@
  */
 export interface CityPickerColumn {
     name?: string;
-    code?: string;
+    id?: string;
     children?: Array<CityPickerColumn>;
 }
